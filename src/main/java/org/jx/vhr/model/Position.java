@@ -1,4 +1,4 @@
-package org.jx.vhr.entity;
+package org.jx.vhr.model;
 
 import java.util.Date;
 import java.io.Serializable;

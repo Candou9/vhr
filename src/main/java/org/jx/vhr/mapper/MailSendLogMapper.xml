@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.MailSendLogMapper">
 
-    <resultMap type="org.jx.vhr.entity.MailSendLog" id="MailSendLogMap">
+    <resultMap type="org.jx.vhr.model.MailSendLog" id="MailSendLogMap">
         <result property="msgid" column="msgId" jdbcType="VARCHAR"/>
         <result property="empid" column="empId" jdbcType="INTEGER"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
@@ -29,7 +29,7 @@
         where status=0 and tryTime &lt; sysdate()
     </select>
 
-    <insert id="insert" parameterType="org.jx.vhr.entity.MailSendLog">
+    <insert id="insert" parameterType="org.jx.vhr.model.MailSendLog">
         insert into vhr.mail_send_log(msgId, empId, status, routeKey, exchange, count, tryTime, createTime, updateTime)
         values (#{msgid}, #{empid}, #{status}, #{routekey}, #{exchange}, #{count}, #{trytime}, #{createtime},
                 #{updatetime})

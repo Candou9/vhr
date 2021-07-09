@@ -1,6 +1,6 @@
 package org.jx.vhr.mapper;
 
-import org.jx.vhr.entity.Sysmsg;
+import org.jx.vhr.model.Sysmsg;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

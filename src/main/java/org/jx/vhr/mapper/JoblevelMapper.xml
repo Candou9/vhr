@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.JoblevelMapper">
 
-    <resultMap type="org.jx.vhr.entity.Joblevel" id="JoblevelMap">
+    <resultMap type="org.jx.vhr.model.Joblevel" id="JoblevelMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="titlelevel" column="titleLevel" jdbcType="VARCHAR"/>

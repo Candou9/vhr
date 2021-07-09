@@ -1,6 +1,6 @@
 package org.jx.vhr.mapper;
 
-import org.jx.vhr.entity.MailSendLog;
+import org.jx.vhr.model.MailSendLog;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;

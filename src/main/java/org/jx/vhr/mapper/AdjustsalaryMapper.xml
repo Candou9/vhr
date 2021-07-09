@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.AdjustsalaryMapper">
 
-    <resultMap type="org.jx.vhr.entity.Adjustsalary" id="AdjustsalaryMap">
+    <resultMap type="org.jx.vhr.model.Adjustsalary" id="AdjustsalaryMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="eid" column="eid" jdbcType="INTEGER"/>
         <result property="asdate" column="asDate" jdbcType="VARCHAR"/>

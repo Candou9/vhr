@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.HrRoleMapper">
 
-    <resultMap type="org.jx.vhr.entity.HrRole" id="HrRoleMap">
+    <resultMap type="org.jx.vhr.model.HrRole" id="HrRoleMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="hrid" column="hrid" jdbcType="INTEGER"/>
         <result property="rid" column="rid" jdbcType="INTEGER"/>

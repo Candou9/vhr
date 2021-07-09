@@ -1,6 +1,6 @@
 package org.jx.vhr.mapper;
 
-import org.jx.vhr.entity.Joblevel;
+import org.jx.vhr.model.Joblevel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

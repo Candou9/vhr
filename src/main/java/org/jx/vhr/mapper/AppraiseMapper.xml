@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.AppraiseMapper">
 
-    <resultMap type="org.jx.vhr.entity.Appraise" id="AppraiseMap">
+    <resultMap type="org.jx.vhr.model.Appraise" id="AppraiseMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="eid" column="eid" jdbcType="INTEGER"/>
         <result property="appdate" column="appDate" jdbcType="VARCHAR"/>

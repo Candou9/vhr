@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.MenuMapper">
 
-    <resultMap type="org.jx.vhr.entity.Menu" id="MenuMap">
+    <resultMap type="org.jx.vhr.model.Menu" id="MenuMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="url" column="url" jdbcType="VARCHAR"/>
         <result property="path" column="path" jdbcType="VARCHAR"/>

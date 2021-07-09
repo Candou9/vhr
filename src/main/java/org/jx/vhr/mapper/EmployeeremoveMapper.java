@@ -1,6 +1,6 @@
 package org.jx.vhr.mapper;
 
-import org.jx.vhr.entity.Employeeremove;
+import org.jx.vhr.model.Employeeremove;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

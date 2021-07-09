@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.PositionMapper">
 
-    <resultMap type="org.jx.vhr.entity.Position" id="PositionMap">
+    <resultMap type="org.jx.vhr.model.Position" id="PositionMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>

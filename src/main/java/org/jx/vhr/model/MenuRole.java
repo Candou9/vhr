@@ -1,19 +1,19 @@
-package org.jx.vhr.entity;
+package org.jx.vhr.model;
 
 import java.io.Serializable;
 
 /**
- * (HrRole)实体类
+ * (MenuRole)实体类
  *
  * @author makejava
- * @since 2021-07-08 13:00:55
+ * @since 2021-07-08 13:00:58
  */
-public class HrRole implements Serializable {
-    private static final long serialVersionUID = 595545829534869046L;
+public class MenuRole implements Serializable {
+    private static final long serialVersionUID = 431140658706757729L;
 
     private Integer id;
 
-    private Integer hrid;
+    private Integer mid;
 
     private Integer rid;
 
@@ -26,12 +26,12 @@ public class HrRole implements Serializable {
         this.id = id;
     }
 
-    public Integer getHrid() {
-        return hrid;
+    public Integer getMid() {
+        return mid;
     }
 
-    public void setHrid(Integer hrid) {
-        this.hrid = hrid;
+    public void setMid(Integer mid) {
+        this.mid = mid;
     }
 
     public Integer getRid() {

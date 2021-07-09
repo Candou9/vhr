@@ -1,6 +1,6 @@
 package org.jx.vhr.mapper;
 
-import org.jx.vhr.entity.Salary;
+import org.jx.vhr.model.Salary;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

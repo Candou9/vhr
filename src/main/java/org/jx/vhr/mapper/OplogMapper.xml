@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.OplogMapper">
 
-    <resultMap type="org.jx.vhr.entity.Oplog" id="OplogMap">
+    <resultMap type="org.jx.vhr.model.Oplog" id="OplogMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="adddate" column="addDate" jdbcType="VARCHAR"/>
         <result property="operate" column="operate" jdbcType="VARCHAR"/>

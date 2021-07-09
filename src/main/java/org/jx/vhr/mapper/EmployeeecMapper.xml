@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jx.vhr.mapper.EmployeeecMapper">
 
-    <resultMap type="org.jx.vhr.entity.Employeeec" id="EmployeeecMap">
+    <resultMap type="org.jx.vhr.model.Employeeec" id="EmployeeecMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="eid" column="eid" jdbcType="INTEGER"/>
         <result property="ecdate" column="ecDate" jdbcType="VARCHAR"/>
