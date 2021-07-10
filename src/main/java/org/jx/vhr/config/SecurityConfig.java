@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -56,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         resp.setContentType("application/json;charset=utf-8");
                         PrintWriter out=resp.getWriter();
                         Hr hr=(Hr)auth.getPrincipal();
+                        hr.setPassword(null);
                         RespBean ok = RespBean.ok("Success Login!", hr);
                         String s = new ObjectMapper().writeValueAsString(hr);
                         out.write(s);
@@ -92,9 +92,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(new LogoutSuccessHandler() {
                     @Override
                     public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth) throws IOException, ServletException {
-
+                        resp.setContentType("application/json;charset=utf-8");
+                        PrintWriter out=resp.getWriter();
+                        Hr hr=(Hr)auth.getPrincipal();
+                        RespBean ok = RespBean.ok("You have logged out!", hr);
+                        String s = new ObjectMapper().writeValueAsString(ok);
+                        out.write(s);
+                        out.flush();
+                        out.close();
                     }
                 })
-                .permitAll();
+                .permitAll()
+                .and()
+                .csrf().disable();
     }
 }
