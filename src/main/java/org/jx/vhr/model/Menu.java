@@ -1,16 +1,9 @@
 package org.jx.vhr.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * (Menu)实体类
- *
- * @author makejava
- * @since 2021-07-08 13:00:58
- */
 public class Menu implements Serializable {
-    private static final long serialVersionUID = 735395786865084575L;
-
     private Integer id;
 
     private String url;
@@ -21,16 +14,31 @@ public class Menu implements Serializable {
 
     private String name;
 
-    private String iconcls;
+    private String iconCls;
 
-    private Object keepalive;
+    private Integer parentId;
 
-    private Object requireauth;
+    private Boolean enabled;
 
-    private Integer parentid;
+    private Meta meta;
 
-    private Object enabled;
+    private List<Menu> children;
 
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;
@@ -72,44 +80,28 @@ public class Menu implements Serializable {
         this.name = name;
     }
 
-    public String getIconcls() {
-        return iconcls;
+    public String getIconCls() {
+        return iconCls;
     }
 
-    public void setIconcls(String iconcls) {
-        this.iconcls = iconcls;
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
     }
 
-    public Object getKeepalive() {
-        return keepalive;
+
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setKeepalive(Object keepalive) {
-        this.keepalive = keepalive;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public Object getRequireauth() {
-        return requireauth;
-    }
-
-    public void setRequireauth(Object requireauth) {
-        this.requireauth = requireauth;
-    }
-
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
-
-    public Object getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Object enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
 }
