@@ -1,9 +1,14 @@
 package org.jx.vhr.mapper;
 
 import org.jx.vhr.model.Hr;
+import org.jx.vhr.model.Role;
+
+import java.util.List;
 
 public interface HrMapper {
     Hr loadUserByUsername(String name);
+
+    List<Role> getHrRolesById(Integer id);
 }
 
 

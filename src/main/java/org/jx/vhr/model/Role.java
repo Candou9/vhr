@@ -9,16 +9,19 @@ import java.io.Serializable;
  * @since 2021-07-08 13:01:01
  */
 public class Role implements Serializable {
-    private static final long serialVersionUID = -97727749203171314L;
-
     private Integer id;
 
     private String name;
-    /**
-     * 角色名称
-     */
-    private String namezh;
 
+    private String nameZh;
+
+    public String getNameZh() {
+        return nameZh;
+    }
+
+    public void setNameZh(String nameZh) {
+        this.nameZh = nameZh;
+    }
 
     public Integer getId() {
         return id;
@@ -36,12 +39,5 @@ public class Role implements Serializable {
         this.name = name;
     }
 
-    public String getNamezh() {
-        return namezh;
-    }
-
-    public void setNamezh(String namezh) {
-        this.namezh = namezh;
-    }
 
 }
