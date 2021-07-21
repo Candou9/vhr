@@ -1,27 +1,27 @@
 package org.jx.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
-/**
- * (Position)实体类
- *
- * @author makejava
- * @since 2021-07-08 13:01:00
- */
 public class Position implements Serializable {
-    private static final long serialVersionUID = -29852330633286890L;
-
     private Integer id;
-    /**
-     * 职位
-     */
+
     private String name;
 
-    private Date createdate;
+    @JsonFormat(pattern = "yyyy-mm-dd",timezone = "Asia/Shanghai")
+    private Date createDate;
 
-    private Object enabled;
+    private Boolean enabled;
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     public Integer getId() {
         return id;
@@ -39,20 +39,11 @@ public class Position implements Serializable {
         this.name = name;
     }
 
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-
-    public Object getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Object enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
 }

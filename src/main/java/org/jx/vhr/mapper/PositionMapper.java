@@ -2,6 +2,7 @@ package org.jx.vhr.mapper;
 
 import org.jx.vhr.model.Position;
 import org.apache.ibatis.annotations.Param;
+import org.jx.vhr.model.RespBean;
 
 import java.util.List;
 
@@ -12,72 +13,20 @@ import java.util.List;
  * @since 2021-07-08 13:01:01
  */
 public interface PositionMapper {
+    int deleteByPrimaryKey(Integer id);
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param id 主键
-     * @return 实例对象
-     */
-    Position queryById(Integer id);
+    int insert(Position record);
 
-    /**
-     * 查询指定行数据
-     *
-     * @param offset 查询起始位置
-     * @param limit  查询条数
-     * @return 对象列表
-     */
-    List<Position> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    int insertSelective(Position record);
 
+    Position selectByPrimaryKey(Integer id);
 
-    /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param position 实例对象
-     * @return 对象列表
-     */
-    List<Position> queryAll(Position position);
+    int updateByPrimaryKeySelective(Position record);
 
-    /**
-     * 新增数据
-     *
-     * @param position 实例对象
-     * @return 影响行数
-     */
-    int insert(Position position);
+    int updateByPrimaryKey(Position record);
 
-    /**
-     * 批量新增数据（MyBatis原生foreach方法）
-     *
-     * @param entities List<Position> 实例对象列表
-     * @return 影响行数
-     */
-    int insertBatch(@Param("entities") List<Position> entities);
+    List<Position> getAllPositions();
 
-    /**
-     * 批量新增或按主键更新数据（MyBatis原生foreach方法）
-     *
-     * @param entities List<Position> 实例对象列表
-     * @return 影响行数
-     */
-    int insertOrUpdateBatch(@Param("entities") List<Position> entities);
-
-    /**
-     * 修改数据
-     *
-     * @param position 实例对象
-     * @return 影响行数
-     */
-    int update(Position position);
-
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 影响行数
-     */
-    int deleteById(Integer id);
-
+    Integer deletePositionsByIds(@Param("ids") Integer[] ids);
 }
 

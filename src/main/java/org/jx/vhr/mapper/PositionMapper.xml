@@ -1,101 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.jx.vhr.mapper.PositionMapper">
-
-    <resultMap type="org.jx.vhr.model.Position" id="PositionMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
-        <result property="enabled" column="enabled" jdbcType="VARCHAR"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jx.vhr.mapper.PositionMapper" >
+    <resultMap id="BaseResultMap" type="org.jx.vhr.model.Position" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="enabled" property="enabled" jdbcType="BIT" />
     </resultMap>
-
-    <!--查询单个-->
-    <select id="queryById" resultMap="PositionMap">
-        select id,
-               name,
-               createDate,
-               enabled
-        from vhr.position
-        where id = #{id}
-    </select>
-
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="PositionMap">
-        select id,
-               name,
-               createDate,
-               enabled
-        from vhr.position limit #{offset}, #{limit}
-    </select>
-
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="PositionMap">
-        select
+    <sql id="Base_Column_List" >
         id, name, createDate, enabled
-        from vhr.position
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-            <if test="createdate != null">
-                and createDate = #{createdate}
-            </if>
-            <if test="enabled != null">
-                and enabled = #{enabled}
-            </if>
-        </where>
+    </sql>
+    <select id="getAllPositions" resultMap="BaseResultMap">
+        select * from position;
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from position
+        where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into vhr.position(name, createDate, enabled)
-        values (#{name}, #{createdate}, #{enabled})
-    </insert>
-
-    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into vhr.position(name, createDate, enabled)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.createdate}, #{entity.enabled})
-        </foreach>
-    </insert>
-
-    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into vhr.position(name, createDate, enabled)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.createdate}, #{entity.enabled})
-        </foreach>
-        on duplicate key update
-        name = values(name) , createDate = values(createDate) , enabled = values(enabled)
-    </insert>
-
-    <!--通过主键修改数据-->
-    <update id="update">
-        update vhr.position
-        <set>
-            <if test="name != null and name != ''">
-                name = #{name},
-            </if>
-            <if test="createdate != null">
-                createDate = #{createdate},
-            </if>
-            <if test="enabled != null">
-                enabled = #{enabled},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete
-        from vhr.position
-        where id = #{id}
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from position
+        where id = #{id,jdbcType=INTEGER}
     </delete>
 
+    <insert id="insert" parameterType="org.jx.vhr.model.Position" >
+        insert into position (id, name, createDate,
+                              enabled)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+                #{enabled,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="org.jx.vhr.model.Position" >
+        insert into position
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="createDate != null" >
+                createDate,
+            </if>
+            <if test="enabled != null" >
+                enabled,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enabled != null" >
+                #{enabled,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deletePositionsByIds">
+        delete from position where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="updateByPrimaryKeySelective" parameterType="org.jx.vhr.model.Position" >
+        update position
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                createDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enabled != null" >
+                enabled = #{enabled,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.jx.vhr.model.Position" >
+        update position
+        set name = #{name,jdbcType=VARCHAR},
+            createDate = #{createDate,jdbcType=TIMESTAMP},
+            enabled = #{enabled,jdbcType=BIT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>
 
