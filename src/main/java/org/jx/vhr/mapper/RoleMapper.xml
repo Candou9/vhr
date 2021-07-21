@@ -5,9 +5,12 @@
     <resultMap type="org.jx.vhr.model.Role" id="RoleMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="namezh" column="nameZh" jdbcType="VARCHAR"/>
+        <result property="nameZh" column="nameZh" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="getAllRoles" resultMap="RoleMap">
+        select * from role;
+    </select>
     <!--查询单个-->
     <select id="queryById" resultMap="RoleMap">
         select id,
@@ -37,8 +40,8 @@
             <if test="name != null and name != ''">
                 and name = #{name}
             </if>
-            <if test="namezh != null and namezh != ''">
-                and nameZh = #{namezh}
+            <if test="nameZh != null and nameZh != ''">
+                and nameZh = #{nameZh}
             </if>
         </where>
     </select>
@@ -46,14 +49,14 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into vhr.role(name, nameZh)
-        values (#{name}, #{namezh})
+        values (#{name}, #{nameZh})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
         insert into vhr.role(name, nameZh)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.namezh})
+            (#{entity.name}, #{entity.nameZh})
         </foreach>
     </insert>
 
@@ -61,7 +64,7 @@
         insert into vhr.role(name, nameZh)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.namezh})
+            (#{entity.name}, #{entity.nameZh})
         </foreach>
         on duplicate key update
         name = values(name) , nameZh = values(nameZh)
@@ -74,8 +77,8 @@
             <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="namezh != null and namezh != ''">
-                nameZh = #{namezh},
+            <if test="nameZh != null and nameZh != ''">
+                nameZh = #{nameZh},
             </if>
         </set>
         where id = #{id}
