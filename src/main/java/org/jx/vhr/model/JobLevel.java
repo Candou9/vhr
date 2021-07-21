@@ -1,28 +1,22 @@
 package org.jx.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
-/**
- * (Joblevel)实体类
- *
- * @author makejava
- * @since 2021-07-08 13:00:56
- */
-public class Joblevel implements Serializable {
-    private static final long serialVersionUID = 336735839688600416L;
+public class JobLevel implements Serializable {
 
     private Integer id;
-    /**
-     * 职称名称
-     */
+
     private String name;
 
-    private Object titlelevel;
+    private String titleLevel;
 
-    private Date createdate;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date createDate;
 
-    private Object enabled;
+    private Boolean enabled;
 
 
     public Integer getId() {
@@ -41,28 +35,27 @@ public class Joblevel implements Serializable {
         this.name = name;
     }
 
-    public Object getTitlelevel() {
-        return titlelevel;
+    public String getTitleLevel() {
+        return titleLevel;
     }
 
-    public void setTitlelevel(Object titlelevel) {
-        this.titlelevel = titlelevel;
+    public void setTitleLevel(String titleLevel) {
+        this.titleLevel = titleLevel;
     }
 
-    public Date getCreatedate() {
-        return createdate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public Object getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Object enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
 }

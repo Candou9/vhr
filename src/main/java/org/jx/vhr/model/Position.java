@@ -10,7 +10,7 @@ public class Position implements Serializable {
 
     private String name;
 
-    @JsonFormat(pattern = "yyyy-mm-dd",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date createDate;
 
     private Boolean enabled;
