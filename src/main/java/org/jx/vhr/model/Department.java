@@ -1,30 +1,30 @@
 package org.jx.vhr.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * (Department)实体类
- *
- * @author makejava
- * @since 2021-07-08 13:00:50
- */
 public class Department implements Serializable {
-    private static final long serialVersionUID = 697623698110704043L;
-
     private Integer id;
-    /**
-     * 部门名称
-     */
+
     private String name;
 
-    private Integer parentid;
+    private Integer parentId;
 
-    private String deppath;
+    private String depPath;
 
-    private Object enabled;
+    private Boolean enabled;
 
-    private Object isparent;
+    private Boolean isParent;
 
+    private List<Department> children;
+
+    public List<Department> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Department> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;
@@ -42,36 +42,35 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getDeppath() {
-        return deppath;
+    public String getDepPath() {
+        return depPath;
     }
 
-    public void setDeppath(String deppath) {
-        this.deppath = deppath;
+    public void setDepPath(String depPath) {
+        this.depPath = depPath;
     }
 
-    public Object getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Object enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
-    public Object getIsparent() {
-        return isparent;
+    public Boolean getParent() {
+        return isParent;
     }
 
-    public void setIsparent(Object isparent) {
-        this.isparent = isparent;
+    public void setParent(Boolean parent) {
+        isParent = parent;
     }
-
 }

@@ -5,12 +5,20 @@
     <resultMap type="org.jx.vhr.model.Department" id="DepartmentMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="parentid" column="parentId" jdbcType="INTEGER"/>
-        <result property="deppath" column="depPath" jdbcType="VARCHAR"/>
-        <result property="enabled" column="enabled" jdbcType="VARCHAR"/>
-        <result property="isparent" column="isParent" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parentId" jdbcType="INTEGER"/>
+        <result property="depPath" column="depPath" jdbcType="VARCHAR"/>
+        <result property="enabled" column="enabled" jdbcType="BIT"/>
+        <result property="isParent" column="isParent" jdbcType="BIT"/>
     </resultMap>
 
+<!--    实现递归-->
+    <resultMap type="org.jx.vhr.model.Department" id="DepartmentWithChildren" extends="DepartmentMap">
+        <collection property="children" ofType="org.jx.vhr.model.Department" select="org.jx.vhr.mapper.DepartmentMapper.getAllDepartmentByParentId" column="id"/>
+    </resultMap>
+
+    <select id="getAllDepartmentByParentId" resultMap="DepartmentWithChildren">
+        select * from department where parentId=#{pid};
+    </select>
     <!--查询单个-->
     <select id="queryById" resultMap="DepartmentMap">
         select id,
@@ -46,17 +54,17 @@
             <if test="name != null and name != ''">
                 and name = #{name}
             </if>
-            <if test="parentid != null">
-                and parentId = #{parentid}
+            <if test="parentId != null">
+                and parentId = #{parentId}
             </if>
-            <if test="deppath != null and deppath != ''">
-                and depPath = #{deppath}
+            <if test="depPath != null and depPath != ''">
+                and depPath = #{depPath}
             </if>
             <if test="enabled != null">
                 and enabled = #{enabled}
             </if>
-            <if test="isparent != null">
-                and isParent = #{isparent}
+            <if test="isParent != null">
+                and isParent = #{isParent}
             </if>
         </where>
     </select>
@@ -64,14 +72,14 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into vhr.department(name, parentId, depPath, enabled, isParent)
-        values (#{name}, #{parentid}, #{deppath}, #{enabled}, #{isparent})
+        values (#{name}, #{parentId}, #{depPath}, #{enabled}, #{isParent})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
         insert into vhr.department(name, parentId, depPath, enabled, isParent)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.parentid}, #{entity.deppath}, #{entity.enabled}, #{entity.isparent})
+            (#{entity.name}, #{entity.parentId}, #{entity.depPath}, #{entity.enabled}, #{entity.isParent})
         </foreach>
     </insert>
 
@@ -79,7 +87,7 @@
         insert into vhr.department(name, parentId, depPath, enabled, isParent)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.parentid}, #{entity.deppath}, #{entity.enabled}, #{entity.isparent})
+            (#{entity.name}, #{entity.parentId}, #{entity.depPath}, #{entity.enabled}, #{entity.isParent})
         </foreach>
         on duplicate key update
         name = values(name) , parentId = values(parentId) , depPath = values(depPath) , enabled = values(enabled) ,
@@ -93,17 +101,17 @@
             <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="parentid != null">
-                parentId = #{parentid},
+            <if test="parentId != null">
+                parentId = #{parentId},
             </if>
-            <if test="deppath != null and deppath != ''">
-                depPath = #{deppath},
+            <if test="depPath != null and depPath != ''">
+                depPath = #{depPath},
             </if>
             <if test="enabled != null">
                 enabled = #{enabled},
             </if>
-            <if test="isparent != null">
-                isParent = #{isparent},
+            <if test="isParent != null">
+                isParent = #{isParent},
             </if>
         </set>
         where id = #{id}
