@@ -9,6 +9,8 @@ public interface HrMapper {
     Hr loadUserByUsername(String name);
 
     List<Role> getHrRolesById(Integer id);
+
+    List<Hr> getAllHrs(Integer hrid);
 }
 
 

@@ -2,11 +2,14 @@ package org.jx.vhr.service;
 
 import org.jx.vhr.model.Hr;
 import org.jx.vhr.mapper.HrMapper;
+import org.jx.vhr.utils.HrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class HrService implements UserDetailsService {
@@ -20,5 +23,9 @@ public class HrService implements UserDetailsService {
         }
         hr.setRoles(hrMapper.getHrRolesById(hr.getId()));
         return hr;
+    }
+
+    public List<Hr> getAllHrs() {
+        return hrMapper.getAllHrs(HrUtils.getCurrentHr().getId());
     }
 }
