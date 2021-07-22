@@ -24,5 +24,9 @@ public interface DepartmentMapper {
     int deleteById(Integer id);
 
     List<Department> getAllDepartmentByParentId(int i);
+
+    void addDep(Department dep);
+
+    void deleteDepById(Department dep);
 }
 

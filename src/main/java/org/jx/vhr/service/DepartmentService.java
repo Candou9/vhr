@@ -15,4 +15,13 @@ public class DepartmentService {
     public List<Department> getAllDepartment() {
         return departmentMapper.getAllDepartmentByParentId(-1);
     }
+
+    public void addDep(Department dep) {
+        dep.setEnabled(true);
+        departmentMapper.addDep(dep);
+    }
+
+    public void deleteDepById(Department dep) {
+        departmentMapper.deleteDepById(dep);
+    }
 }
