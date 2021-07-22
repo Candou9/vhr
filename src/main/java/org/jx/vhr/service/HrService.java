@@ -1,5 +1,6 @@
 package org.jx.vhr.service;
 
+import org.jx.vhr.mapper.HrRoleMapper;
 import org.jx.vhr.model.Hr;
 import org.jx.vhr.mapper.HrMapper;
 import org.jx.vhr.utils.HrUtils;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class HrService implements UserDetailsService {
     @Autowired
     HrMapper hrMapper;
+    @Autowired
+    HrRoleMapper hrRoleMapper;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Hr hr= hrMapper.loadUserByUsername(s);
@@ -27,5 +31,15 @@ public class HrService implements UserDetailsService {
 
     public List<Hr> getAllHrs() {
         return hrMapper.getAllHrs(HrUtils.getCurrentHr().getId());
+    }
+
+    public Integer updateHr(Hr hr) {
+        return hrMapper.updateByPrimaryKeySelective(hr);
+    }
+
+    @Transactional
+    public boolean updateHrRole(Integer hrid, Integer[] rids) {
+        hrRoleMapper.deleteByHrId(hrid);
+        return hrRoleMapper.addRole(hrid,rids)==rids.length;
     }
 }

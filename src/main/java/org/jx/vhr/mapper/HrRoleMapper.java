@@ -79,5 +79,8 @@ public interface HrRoleMapper {
      */
     int deleteById(Integer id);
 
+    void deleteByHrId(Integer hrid);
+
+    Integer addRole(@Param("hrid") Integer hrid, @Param("rids") Integer[] rids);
 }
 

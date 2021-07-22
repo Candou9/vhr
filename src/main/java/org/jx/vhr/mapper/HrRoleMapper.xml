@@ -8,6 +8,15 @@
         <result property="rid" column="rid" jdbcType="INTEGER"/>
     </resultMap>
 
+    <insert id="addRole">
+        insert into hr_role (hrid,rid) values
+        <foreach collection="rids" item="rid" separator=",">
+            (#{hrid},#{rid})
+        </foreach>
+    </insert>
+    <delete id="deleteByHrId">
+        delete from hr_role where hrid=#{hrid}
+    </delete>
     <!--查询单个-->
     <select id="queryById" resultMap="HrRoleMap">
         select id,

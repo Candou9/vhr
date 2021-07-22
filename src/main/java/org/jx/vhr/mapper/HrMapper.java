@@ -11,6 +11,8 @@ public interface HrMapper {
     List<Role> getHrRolesById(Integer id);
 
     List<Hr> getAllHrs(Integer hrid);
+
+    int updateByPrimaryKeySelective(Hr record);
 }
 
 
@@ -24,7 +26,6 @@ public interface HrMapper {
 
     Hr selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Hr record);
 
     int updateByPrimaryKey(Hr record);
 
