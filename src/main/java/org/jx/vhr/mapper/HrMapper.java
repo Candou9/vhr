@@ -1,5 +1,6 @@
 package org.jx.vhr.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.jx.vhr.model.Hr;
 import org.jx.vhr.model.Role;
 
@@ -10,9 +11,11 @@ public interface HrMapper {
 
     List<Role> getHrRolesById(Integer id);
 
-    List<Hr> getAllHrs(Integer hrid);
+    List<Hr> getAllHrs(@Param("hrid") Integer hrid, @Param("keywords") String keywords);
 
     int updateByPrimaryKeySelective(Hr record);
+
+    Integer deleteByPrimaryKey(Integer id);
 }
 
 

@@ -29,8 +29,8 @@ public class HrService implements UserDetailsService {
         return hr;
     }
 
-    public List<Hr> getAllHrs() {
-        return hrMapper.getAllHrs(HrUtils.getCurrentHr().getId());
+    public List<Hr> getAllHrs(String keywords) {
+        return hrMapper.getAllHrs(HrUtils.getCurrentHr().getId(),keywords);
     }
 
     public Integer updateHr(Hr hr) {
@@ -41,5 +41,9 @@ public class HrService implements UserDetailsService {
     public boolean updateHrRole(Integer hrid, Integer[] rids) {
         hrRoleMapper.deleteByHrId(hrid);
         return hrRoleMapper.addRole(hrid,rids)==rids.length;
+    }
+
+    public Integer deleteHrById(Integer id) {
+        return hrMapper.deleteByPrimaryKey(id);
     }
 }
